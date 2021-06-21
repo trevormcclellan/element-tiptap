@@ -34,12 +34,18 @@
       <!-- when image is break text or float
       bubble menu's position is miscalculated
       use el-popover instead bubble menu -->
-      <el-popover
+      <!-- <el-popover
         :value="selected"
         :visible-arrow="false"
         placement="top"
         trigger="manual"
         popper-class="el-tiptap-image-popper"
+      > -->
+      <el-popover
+        :show="selected"
+        :visible-arrow="false"
+        placement="top"
+        custom-class="el-tiptap-image-popper"
       >
         <image-bubble-menu
           :node="node"
@@ -58,7 +64,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Popover } from 'element-ui';
+//import { Popover } from 'element-ui';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
@@ -79,7 +85,7 @@ const MAX_SIZE = 100000;
 
 @Component({
   components: {
-    [Popover.name]: Popover,
+    //[Popover.name]: Popover,
     ImageBubbleMenu,
   },
 })

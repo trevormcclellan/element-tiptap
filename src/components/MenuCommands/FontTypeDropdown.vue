@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown
+  <!-- <el-dropdown
     placement="bottom"
     trigger="click"
     @command="toggleFontType"
@@ -9,16 +9,24 @@
       :tooltip="et.t('editor.extensions.FontType.tooltip')"
       :readonly="et.isCodeViewMode"
       icon="font"
+    /> -->
+    <b-dropdown
+    variant="link"
+    toggle-class="text-decoration-none b-tiptap-dropdown" no-caret
+    slot="dropdown"
+  >
+  <template #button-content>
+    <command-button
+      :enable-tooltip="et.tooltip"
+      :tooltip="et.t('editor.extensions.Heading.tooltip')"
+      :readonly="et.isCodeViewMode"
+      icon="fas fa-font"
     />
-
-    <el-dropdown-menu
-      slot="dropdown"
-      class="el-tiptap-dropdown-menu"
-    >
-      <el-dropdown-item
+    </template>
+      <b-dropdown-item-button
         v-for="name in fontTypes"
         :key="name"
-        :command="name"
+        @click="toggleFontType(name)"
         :class="{
           'el-tiptap-dropdown-menu__item--active': name === activeFontType,
         }"
@@ -28,15 +36,14 @@
           :data-font="name"
           :style="{ 'font-family': name }"
         >{{ name }}</span>
-      </el-dropdown-item>
-    </el-dropdown-menu>
-  </el-dropdown>
+      </b-dropdown-item-button>
+  </b-dropdown>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Inject, Vue } from 'vue-property-decorator';
 import { MenuData } from 'tiptap';
-import { Dropdown, DropdownMenu, DropdownItem } from 'element-ui';
+//import { Dropdown, DropdownMenu, DropdownItem } from 'element-ui';
 import { DEFAULT_FONT_TYPE_MAP, findActiveFontType } from '@/utils/font_type';
 import { isPlainObject } from '@/utils/shared';
 import Logger from '@/utils/logger';
@@ -44,9 +51,9 @@ import CommandButton from './CommandButton.vue';
 
 @Component({
   components: {
-    [Dropdown.name]: Dropdown,
-    [DropdownMenu.name]: DropdownMenu,
-    [DropdownItem.name]: DropdownItem,
+    // [Dropdown.name]: Dropdown,
+    // [DropdownMenu.name]: DropdownMenu,
+    // [DropdownItem.name]: DropdownItem,
     CommandButton,
   },
 })

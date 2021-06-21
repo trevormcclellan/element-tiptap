@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown
+  <!-- <el-dropdown
     placement="bottom"
     trigger="click"
     @command="toggleFontSize"
@@ -9,50 +9,57 @@
       :tooltip="et.t('editor.extensions.FontSize.tooltip')"
       :readonly="et.isCodeViewMode"
       icon="text-width"
+    /> -->
+    <b-dropdown
+    variant="link"
+    toggle-class="text-decoration-none b-tiptap-dropdown" no-caret
+    slot="dropdown"
+  >
+  <template #button-content>
+    <command-button
+      :enable-tooltip="et.tooltip"
+      :tooltip="et.t('editor.extensions.Heading.tooltip')"
+      :readonly="et.isCodeViewMode"
+      icon="fas fa-text-width"
     />
-
-    <el-dropdown-menu
-      slot="dropdown"
-      class="el-tiptap-dropdown-menu"
-    >
+    </template>
       <!-- default size -->
-      <el-dropdown-item
-        :command="defaultSize"
+      <b-dropdown-item-button
+        @click="toggleFontSize(defaultSize)"
         :class="{
           'el-tiptap-dropdown-menu__item--active': activeFontSize === defaultSize,
         }"
         class="el-tiptap-dropdown-menu__item"
       >
         <span data-font-size="default">{{ et.t('editor.extensions.FontSize.default') }}</span>
-      </el-dropdown-item>
+      </b-dropdown-item-button>
 
-      <el-dropdown-item
+      <b-dropdown-item-button
         v-for="fontSize in fontSizes"
         :key="fontSize"
-        :command="fontSize"
+        @click="toggleFontSize(fontSize)"
         :class="{
           'el-tiptap-dropdown-menu__item--active': fontSize === activeFontSize,
         }"
         class="el-tiptap-dropdown-menu__item"
       >
         <span :data-font-size="fontSize">{{ fontSize }}</span>
-      </el-dropdown-item>
-    </el-dropdown-menu>
-  </el-dropdown>
+      </b-dropdown-item-button>
+  </b-dropdown>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Inject, Vue } from 'vue-property-decorator';
 import { MenuData } from 'tiptap';
-import { Dropdown, DropdownMenu, DropdownItem } from 'element-ui';
+//import { Dropdown, DropdownMenu, DropdownItem } from 'element-ui';
 import { DEFAULT_FONT_SIZE, findActiveFontSize } from '@/utils/font_size';
 import CommandButton from './CommandButton.vue';
 
 @Component({
   components: {
-    [Dropdown.name]: Dropdown,
-    [DropdownMenu.name]: DropdownMenu,
-    [DropdownItem.name]: DropdownItem,
+    // [Dropdown.name]: Dropdown,
+    // [DropdownMenu.name]: DropdownMenu,
+    // [DropdownItem.name]: DropdownItem,
     CommandButton,
   },
 })

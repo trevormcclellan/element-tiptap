@@ -3,7 +3,7 @@
     :command="() => isCodeViewMode = !isCodeViewMode"
     :enable-tooltip="et.tooltip"
     :tooltip="et.t('editor.extensions.CodeView.tooltip')"
-    icon="regular/file-code"
+    icon="far fa-file-code"
     :is-active="isCodeViewMode"
   />
 </template>

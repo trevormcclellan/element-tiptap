@@ -9,7 +9,8 @@
     data-drag-handle
   >
     <span contenteditable="false">
-      <el-checkbox v-model="done" />
+      <!-- <el-checkbox v-model="done" /> -->
+      <b-form-checkbox v-model="done" />
     </span>
 
     <div
@@ -22,16 +23,16 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Checkbox } from 'element-ui';
+//import { Checkbox } from 'element-ui';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import { transformLineHeightToCSS } from '@/utils/line_height';
 
-@Component({
-  components: {
-    [Checkbox.name]: Checkbox,
-  },
-})
+// @Component({
+//   components: {
+//     [Checkbox.name]: Checkbox,
+//   },
+// })
 export default class TodoItemView extends Vue {
   @Prop({
     type: ProsemirrorNode,

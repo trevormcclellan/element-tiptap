@@ -39,6 +39,11 @@
   }
 }
 
+.b-tiptap-dropdown {
+  padding: 0;
+  box-shadow: none;
+}
+
 .el-tiptap-dropdown-menu {
   $menu: &;
 

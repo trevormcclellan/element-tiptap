@@ -3,7 +3,7 @@
     :command="() => editorContext.commands.link({ href: '' })"
     :enable-tooltip="et.tooltip"
     :tooltip="et.t('editor.extensions.Link.unlink.tooltip')"
-    icon="unlink"
+    icon="fas fa-unlink"
   />
 </template>
 

@@ -1,20 +1,15 @@
 <template>
-  <el-tooltip
-    :content="tooltip"
-    :open-delay="350"
-    :disabled="!enableTooltip || readonly"
-    transition="el-zoom-in-bottom"
-    effect="dark"
-    placement="top"
-  >
+<div>
     <div
-      :class="commandButtonClass"
-      @mousedown.prevent
-      @click="onClick"
+        v-b-tooltip.hover.ds350.top="{ title: `${tooltip}`, boundary: 'viewport', disabled: !enableTooltip || readonly }"
+        :id="commandButtonId"
+        :class="commandButtonClass"
+        @mousedown.prevent
+        @click="onClick"
     >
-      <v-icon :name="icon"/>
+    <i :class="icon"></i>
     </div>
-  </el-tooltip>
+</div>
 </template>
 
 <script lang="ts">
@@ -63,16 +58,22 @@ import 'vue-awesome/icons/regular/file-code';
 import 'vue-awesome/icons/arrow-left';
 
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Tooltip } from 'element-ui';
+//import { Tooltip } from 'element-ui';
 import { noop } from '@/utils/shared';
 
 @Component({
   components: {
     'v-icon': Icon,
-    [Tooltip.name]: Tooltip,
+    //[Tooltip.name]: Tooltip,
   },
 })
 export default class CommandButton extends Vue {
+  @Prop({
+    type: String,
+    required: true,
+  })
+  readonly name!: string;
+
   @Prop({
     type: String,
     required: true,
@@ -115,6 +116,10 @@ export default class CommandButton extends Vue {
       'el-tiptap-editor__command-button--active': this.isActive,
       'el-tiptap-editor__command-button--readonly': this.readonly,
     };
+  }
+
+  private get commandButtonId (): string {
+    return `el-tiptap-editor__command-button-${this.name}`;
   }
 
   onClick () {

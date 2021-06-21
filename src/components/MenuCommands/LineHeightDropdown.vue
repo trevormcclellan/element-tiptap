@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown
+  <!-- <el-dropdown
     placement="bottom"
     trigger="click"
     @command="lineHeight => editorContext.commands.line_height({ lineHeight })"
@@ -9,38 +9,46 @@
       :tooltip="et.t('editor.extensions.LineHeight.tooltip')"
       :readonly="et.isCodeViewMode"
       icon="text-height"
+    /> -->
+  <b-dropdown
+    variant="link"
+    toggle-class="text-decoration-none b-tiptap-dropdown" no-caret
+    slot="dropdown"
+  >
+  <template #button-content>
+    <command-button
+      :enable-tooltip="et.tooltip"
+      :tooltip="et.t('editor.extensions.Heading.tooltip')"
+      :readonly="et.isCodeViewMode"
+      icon="fas fa-text-height"
     />
-    <el-dropdown-menu
-      slot="dropdown"
-      class="el-tiptap-dropdown-menu"
-    >
-      <el-dropdown-item
+    </template>
+      <b-dropdown-item-button
         v-for="lineHeight in lineHeights"
         :key="lineHeight"
-        :command="lineHeight"
+        @click="editorContext.commands.line_height({ lineHeight })"
         :class="{
           'el-tiptap-dropdown-menu__item--active': isLineHeightActive(lineHeight),
         }"
         class="el-tiptap-dropdown-menu__item"
       >
         <span>{{ lineHeight }}</span>
-      </el-dropdown-item>
-    </el-dropdown-menu>
-  </el-dropdown>
+      </b-dropdown-item-button>
+  </b-dropdown>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Inject, Vue } from 'vue-property-decorator';
 import { MenuData } from 'tiptap';
-import { Dropdown, DropdownMenu, DropdownItem } from 'element-ui';
+//import { Dropdown, DropdownMenu, DropdownItem } from 'element-ui';
 import { isLineHeightActive } from '@/utils/line_height';
 import CommandButton from './CommandButton.vue';
 
 @Component({
   components: {
-    [Dropdown.name]: Dropdown,
-    [DropdownMenu.name]: DropdownMenu,
-    [DropdownItem.name]: DropdownItem,
+    // [Dropdown.name]: Dropdown,
+    // [DropdownMenu.name]: DropdownMenu,
+    // [DropdownItem.name]: DropdownItem,
     CommandButton,
   },
 })

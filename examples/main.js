@@ -7,10 +7,15 @@ import {
   Footer,
   Button,
 } from 'element-ui';
+import { BootstrapVue } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import { ElementTiptapPlugin } from 'element-tiptap';
 import App from './App.vue';
 import router from './router';
+
+Vue.use(BootstrapVue)
 
 Vue.use(Container);
 Vue.use(Header);

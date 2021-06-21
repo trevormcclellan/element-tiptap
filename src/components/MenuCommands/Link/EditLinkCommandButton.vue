@@ -4,75 +4,80 @@
       :command="openEditLinkDialog"
       :enable-tooltip="et.tooltip"
       :tooltip="et.t('editor.extensions.Link.edit.tooltip')"
-      icon="edit"
+      icon="fas fa-edit"
     />
 
-    <el-dialog
+    <!-- <el-dialog
       :title="et.t('editor.extensions.Link.edit.control.title')"
       :visible.sync="editLinkDialogVisible"
       :append-to-body="true"
       width="400px"
       custom-class="el-tiptap-edit-link-dialog"
+    > -->
+    <b-modal
+      :title="et.t('editor.extensions.Link.edit.control.title')"
+      :v-model="editLinkDialogVisible"
+      modal-class="el-tiptap-edit-link-dialog"
     >
-      <el-form
+      <!-- <el-form
         :model="linkAttrs"
         label-position="right"
         size="small"
-      >
-        <el-form-item
+      > -->
+      <b-form>
+        <b-form-group
           :label="et.t('editor.extensions.Link.edit.control.href')"
-          prop="href"
+          label-for="href-input"
         >
-          <el-input
+          <b-form-input
+            id="href-input"
             v-model="linkAttrs.href"
             autocomplete="off"
           />
-        </el-form-item>
+          </b-form-group>
+        <!-- </el-form-item> -->
 
-        <el-form-item prop="openInNewTab">
-          <el-checkbox v-model="linkAttrs.openInNewTab">
+        <b-form-checkbox v-model="linkAttrs.openInNewTab">
             {{ et.t('editor.extensions.Link.edit.control.open_in_new_tab') }}
-          </el-checkbox>
-        </el-form-item>
-      </el-form>
+        </b-form-checkbox>
+      </b-form>
+      <!-- </el-form> -->
 
-      <template #footer>
-        <el-button
-          size="small"
-          round
+      <template #modal-footer>
+        <b-button
+          size="sm"
           @click="closeEditLinkDialog"
         >
           {{ et.t('editor.extensions.Link.edit.control.cancel') }}
-        </el-button>
-
-        <el-button
-          type="primary"
-          size="small"
-          round
+        </b-button>
+        <b-button
+          variant="primary"
+          size="sm"
           @mousedown.prevent
           @click="updateLinkAttrs"
         >
           {{ et.t('editor.extensions.Link.edit.control.confirm') }}
-        </el-button>
+        </b-button>
       </template>
-    </el-dialog>
+    </b-modal>
+    <!-- </el-dialog> -->
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Inject, Vue } from 'vue-property-decorator';
-import { Dialog, Form, FormItem, Input, Checkbox, Button } from 'element-ui';
+//import { Dialog, Form, FormItem, Input, Checkbox, Button } from 'element-ui';
 import { MenuData } from 'tiptap';
 import CommandButton from '../CommandButton.vue';
 
 @Component({
   components: {
-    [Dialog.name]: Dialog,
-    [Form.name]: Form,
-    [FormItem.name]: FormItem,
-    [Input.name]: Input,
-    [Checkbox.name]: Checkbox,
-    [Button.name]: Button,
+    // [Dialog.name]: Dialog,
+    // [Form.name]: Form,
+    // [FormItem.name]: FormItem,
+    // [Input.name]: Input,
+    // [Checkbox.name]: Checkbox,
+    // [Button.name]: Button,
     CommandButton,
   },
 })

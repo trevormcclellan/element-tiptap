@@ -4,7 +4,7 @@
     :enable-tooltip="et.tooltip"
     :tooltip="et.t('editor.extensions.Iframe.tooltip')"
     :readonly="et.isCodeViewMode"
-    icon="video"
+    icon="fas fa-video"
   />
 </template>
 

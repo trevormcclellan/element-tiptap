@@ -3,7 +3,7 @@
     :command="() => isFullscreen = !isFullscreen"
     :enable-tooltip="et.tooltip"
     :tooltip="buttonTooltip"
-    :icon="isFullscreen ? 'compress' : 'expand'"
+    :icon="isFullscreen ? 'fas fa-compress' : 'fas fa-expand'"
     :is-active="isFullscreen"
   />
 </template>

@@ -3,7 +3,7 @@
     :command="openLink"
     :enable-tooltip="et.tooltip"
     :tooltip="et.t('editor.extensions.Link.open.tooltip')"
-    icon="external-link-alt"
+    icon="fas fa-external-link-alt"
   />
 </template>
 
